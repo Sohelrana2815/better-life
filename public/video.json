@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "title": "Introduction to React",
+    "url": "https://youtu.be/CgkZ7MvWUAA?si=qK4IEB5WD-b6o8vR"
+  },
+  {
+    "id": 2,
+    "title": "Advanced JavaScript Techniques",
+    "url": "https://youtu.be/LDB4uaJ87e0?si=8TdZhdRUtgHP6zHA"
+  },
+  {
+    "id": 3,
+    "title": "Building with Tailwind CSS",
+    "url": "https://youtu.be/CgkZ7MvWUAA?si=qK4IEB5WD-b6o8vR"
+  },
+  {
+    "id": 4,
+    "title": "Understanding GraphQL",
+    "url": "https://youtu.be/LDB4uaJ87e0?si=8TdZhdRUtgHP6zHA"
+  },
+  {
+    "id": 5,
+    "title": "Mastering Redux",
+    "url": "https://youtu.be/LDB4uaJ87e0?si=8TdZhdRUtgHP6zHA"
+  },
+  {
+    "id": 6,
+    "title": "Next.js for Beginners",
+    "url": "https://youtu.be/qVyXVRqqfrg?si=DrifKYEy3NgRbtMO"
+  },
+  {
+    "id": 7,
+    "title": "Introduction to TypeScript",
+    "url": "https://youtu.be/LDB4uaJ87e0?si=8TdZhdRUtgHP6zHA"
+  },
+  {
+    "id": 8,
+    "title": "Building REST APIs",
+    "url": "https://youtu.be/LDB4uaJ87e0?si=8TdZhdRUtgHP6zHA"
+  },
+  {
+    "id": 9,
+    "title": "Deploying Applications with Docker",
+    "url": "https://youtu.be/LDB4uaJ87e0?si=8TdZhdRUtgHP6zHA"
+  },
+  {
+    "id": 10,
+    "title": "Getting Started with Node.js",
+    "url": "https://youtu.be/LDB4uaJ87e0?si=8TdZhdRUtgHP6zHA"
+  }
+]
