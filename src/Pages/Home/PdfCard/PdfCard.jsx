@@ -1,4 +1,4 @@
-import { FaBeer, FaDochub, FaDownload, FaFilePdf } from "react-icons/fa";
+import { FaDownload, FaFilePdf } from "react-icons/fa";
 const PdfCard = ({ pdfFile }) => {
   // console.log(pdfFile);
   const { name, file, description } = pdfFile;
