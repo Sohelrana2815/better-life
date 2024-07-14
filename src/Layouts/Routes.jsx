@@ -5,6 +5,7 @@ import PdfViewer from "../Pages/Home/PdfViewer/PdfViewer";
 import HealthTipsVideo from "../Pages/Home/HealthTipsVideo/HealthTipsVideo";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
+import Timer from "../Pages/Timer/Timer";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/signUp",
         element: <SignUp></SignUp>,
+      },
+      {
+        path: "/timer",
+        element: <Timer></Timer>,
       },
     ],
   },

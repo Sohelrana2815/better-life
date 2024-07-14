@@ -10,6 +10,9 @@ const Navbar = () => {
       <li>
         <NavLink to="/login">Login</NavLink>
       </li>
+      <li>
+        <NavLink to="/timer">Timer</NavLink>
+      </li>
     </>
   );
 

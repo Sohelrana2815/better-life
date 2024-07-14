@@ -1,10 +1,14 @@
 
+
 const Timer = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+
+const 
+
+  return (
+   <div>
+    
+   </div>
+  );
 };
 
 export default Timer;
