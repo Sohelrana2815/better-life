@@ -15,19 +15,19 @@ const useTimer = (isActive, initialTime) => {
   const [remainingTime, setRemainingTime] = useState(initialTime);
 
   useEffect(() => {
-    let timer;
+    setRemainingTime(initialTime); // Reset remaining time whenever initialTime changes
+  }, [initialTime]);
 
+  useEffect(() => {
     if (isActive && remainingTime > 0) {
-      timer = setInterval(() => {
-        setRemainingTime((prev) => prev - 1);
+      const interval = setInterval(() => {
+        setRemainingTime((prevTime) => prevTime - 1);
       }, 1000);
-    } else if (remainingTime === 0 && isActive) {
-      clearInterval(timer);
-    }
-    return () => clearInterval(timer);
-  }, [isActive, remainingTime]);
 
-  return [remainingTime, setRemainingTime];
+      return () => clearInterval(interval);
+    }
+  }, [isActive, remainingTime]);
+  return remainingTime;
 };
 
 export default useTimer;

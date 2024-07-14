@@ -9,7 +9,6 @@ const Timer = () => {
   const [time, setTime] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
-  const [isAlarmPlaying, setIsAlarmPlaying] = useState(false);
   const intervalRef = useRef(null);
   const audioRef = useRef(null);
 
@@ -21,8 +20,6 @@ const Timer = () => {
       );
     } else if (time === 0 && isActive) {
       clearInterval(intervalRef.current);
-      setIsAlarmPlaying(true); // Set alarm playing to true
-      audioRef.current.loop = true; // Set the audio to loop
       audioRef.current.play();
     }
     return () => clearInterval(intervalRef.current);
@@ -31,11 +28,9 @@ const Timer = () => {
   const handleStart = () => {
     const totalSeconds =
       inputTime.hours * 3600 + inputTime.minutes * 60 + inputTime.seconds;
-    if (totalSeconds > 0) {
-      setTime(totalSeconds);
-      setIsActive(true);
-      setIsPaused(false);
-    }
+    setTime(totalSeconds);
+    setIsActive(true);
+    setIsPaused(false);
   };
 
   const handlePause = () => setIsPaused(!isPaused);
@@ -46,52 +41,44 @@ const Timer = () => {
     setIsPaused(false);
     setTime(0);
     setInputTime({ hours: 0, minutes: 0, seconds: 0 });
-    setIsAlarmPlaying(false); // Reset alarm playing state
-    audioRef.current.loop = false; // Stop looping when reset
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputTime((prev) => ({
       ...prev,
-      [name]: parseInt(value, 10),
+      [name]: Math.max(0, parseInt(value, 10) || 0),
     }));
   };
 
   const formatTime = (time) => {
-    const sec = `0${time % 60}`.slice(-2);
-    const min = `0${Math.floor((time / 60) % 60)}`.slice(-2);
-    const hr = `0${Math.floor(time / 3600)}`.slice(-2);
-    return `${hr}:${min}:${sec}`;
-  };
-
-  const handleStopAlarm = () => {
-    audioRef.current.pause();
-    audioRef.current.currentTime = 0; // Reset audio to start
-    setIsAlarmPlaying(false);
-    audioRef.current.loop = false; // Stop looping
+    const getSeconds = `0${time % 60}`.slice(-2);
+    const minutes = Math.floor(time / 60);
+    const getMinutes = `0${minutes % 60}`.slice(-2);
+    const getHours = `0${Math.floor(time / 3600)}`.slice(-2);
+    return `${getHours}:${getMinutes}:${getSeconds}`;
   };
 
   return (
     <div className="flex flex-col items-center p-4 space-y-4">
       <div className="flex space-x-2">
-        <Select
+        <Input
           name="hours"
           value={inputTime.hours}
           onChange={handleChange}
-          options={Array.from({ length: 24 }, (_, i) => i)}
+          placeholder="Hours"
         />
-        <Select
+        <Input
           name="minutes"
           value={inputTime.minutes}
           onChange={handleChange}
-          options={Array.from({ length: 60 }, (_, i) => i)}
+          placeholder="Minutes"
         />
-        <Select
+        <Input
           name="seconds"
           value={inputTime.seconds}
           onChange={handleChange}
-          options={Array.from({ length: 60 }, (_, i) => i)}
+          placeholder="Seconds"
         />
       </div>
       <div className="text-4xl font-mono">{formatTime(time)}</div>
@@ -111,29 +98,20 @@ const Timer = () => {
           </>
         )}
       </div>
-      {isAlarmPlaying && (
-        <Button onClick={handleStopAlarm} className="bg-blue-500">
-          Stop Alarm
-        </Button>
-      )}
-      <audio ref={audioRef} src="/src/asset/timer.mp3" />
+      <audio ref={audioRef} src="/alarm.mp3" />
     </div>
   );
 };
 
-const Select = ({ name, value, onChange, options }) => (
-  <select
+const Input = ({ name, value, onChange, placeholder }) => (
+  <input
+    type="number"
     name={name}
     value={value}
     onChange={onChange}
+    placeholder={placeholder}
     className="p-2 border rounded"
-  >
-    {options.map((option) => (
-      <option key={option} value={option}>
-        {option}
-      </option>
-    ))}
-  </select>
+  />
 );
 
 const Button = ({ onClick, children, className }) => (
